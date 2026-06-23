@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Imara Women's Loans</title>
+</head>
+<body>
+
+<h1>Imara Women's Loan</h1>
+
+<input id="phone" placeholder="2547XXXXXXXX" />
+<br><br>
+<input id="amount" placeholder="Amount" />
+<br><br>
+
+<button onclick="pay()">Pay with M-Pesa</button>
+
+<script>
+async function pay() {
+  const phone = document.getElementById("phone").value;
+  const amount = document.getElementById("amount").value;
+
+  const res = await fetch("/.netlify/functions/stkpush", {
+    method: "POST",
+    body: JSON.stringify({ phone, amount })
+  });
+
+  const data = await res.json();
+  alert(JSON.stringify(data));
+}
+</script>
+
+</body>
+</html>
